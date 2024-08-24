@@ -4,40 +4,48 @@
         <div class="row d-flex justify-content-center mt-4 mb-4">
             <div class="col-md-6 form-container">
                 <h3 class="text-center my-4 fs-3">Edit Listing</h3>
-                <form method="post" action="/listings/<%= listing._id %>?_method=PUT">
+                <form method="post" action="/listings/<%= listing._id %>?_method=PUT" class="needs-validation" novalidate>
                     <div class="mb-3">
                         <label for="title" class="form-label">Title</label>
                         <input class="form-control" type="text" name="listing[title]" value="<%= listing.title  %>"
-                            placeholder="Enter title" id="title">
+                            placeholder="Enter title" id="title" required>
+                        <div class="valid-feedback">Title looks good!</div>
                     </div>
                     <div class="mb-3">
                         <label for="description" class="form-label">Description</label>
                         <textarea class="form-control" ea name="listing[description]" id="description"
-                            placeholder="Enter description" id="description"><%= listing.description %></textarea>
+                            placeholder="Enter description" id="description" required><%= listing.description %></textarea>
+                        <div class="invalid-feedback">Please enter a sort description</div>
+
                     </div>
 
                     <div class="mb-3">
                         <label for="image" class="form-label">Image-Link</label>
                         <input class="form-control" type="text" name="listing[image]" value="<%= listing.image %>"
-                            placeholder="Enter image URL" id="image">
+                            placeholder="Enter image URL" id="image" required>
                     </div>
 
                     <div class="row mb-3">
                         <div class="col-md-6 first">
                             <label for="price" class="form-label">Price</label>
                             <input class="form-control" type="number" name="listing[price]" value="<%= listing.price %>"
-                                placeholder="Enter price" id="price">
+                                placeholder="Enter price" id="price" required>
+                            <div class="invalid-feedback">Price should be valid</div>
                         </div>
                         <div class="col-md-6">
                             <label for="country" class="form-label">Country</label>
                             <input class="form-control" type="text" id="country" name="listing[country]"
-                                value="<%= listing.country %>" placeholder="Enter Country" id="country">
+                                value="<%= listing.country %>" placeholder="Enter Country" id="country" required>
+                            <div class="invalid-feedback">Country should be valid</div>
+    
                         </div>
                     </div>
                     <div class="mb-3">
                         <label for="location" class="form-label">Location</label>
                         <input class="form-control" type="text" name="listing[location]" value="<%= listing.location %>"
-                            placeholder="Enter location" id="location">
+                            placeholder="Enter location" id="location" required>
+                        <div class="invalid-feedback">Location should be valid</div>
+    
                     </div>
 
                     
