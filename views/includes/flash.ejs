@@ -1,0 +1,47 @@
+<% if(success && success.length > 0){ %>
+    <div class="alert alert-success alert-dismissible fade show success msg" role="alert" id="success">
+        <i class="fa-solid fa-circle-check"></i> &nbsp;
+        <%= success  %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+<% } %>
+
+<% if(error && error.length > 0){ %>
+
+    <div class="alert alert-danger alert-dismissible fade show msg danger" role="alert" id="danger">
+        <i class="fa-solid fa-triangle-exclamation"></i> &nbsp;
+        <%= error  %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    
+    
+<% } %>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const disable = () => {
+            const successDivs = document.querySelector('.success');
+            const dangerDiv = document.querySelector('.danger');
+            if(successDivs){
+
+                successDivs.classList.remove('myActiveSuccess')
+                successDivs.classList.add('myActiveSuccess')
+                setTimeout(() => {
+                    successDivs.style.display = 'none';
+                }, 3000);
+            }
+
+            if(dangerDiv){
+
+                dangerDiv.classList.remove('myActiveDanger')
+                dangerDiv.classList.add('myActiveDanger')
+                setTimeout(() => {
+                    dangerDiv.style.display = 'none';
+                }, 3000);
+            }
+        };
+
+        disable();
+    });
+</script>
+    
