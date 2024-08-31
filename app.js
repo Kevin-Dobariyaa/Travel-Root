@@ -1,11 +1,28 @@
 const express = require("express");
-const app = express();
 const mongoose = require("mongoose");
-const path = require("path");
 const methodOverride = require('method-override');
+const path = require("path");
 const ejsMate = require("ejs-mate");
+const session = require("express-session");
+const flash = require("connect-flash");
+
 const ExpressError = require("./utils/ExpressError.js")
+
+const app = express();
+
 const MONGO_URL = "mongodb://127.0.0.1:27017/TravelRoot";
+const sessionOption = {
+    secret:"changethissecret",
+    resave:false,
+    saveUninitialized:true,
+    cookie:{
+        expires:Date.now() + 7*24*60*60*1000,
+        maxAge: 7*24*60*60*1000,
+        httpOnly: true,
+    }
+};
+
+
 
 const listings = require("./routes/listing.js");
 const reviews = require("./routes/review.js");
@@ -34,6 +51,15 @@ app.get("/", (req, res) => {
     res.send("Hii!! How are you?");
 });
 
+
+app.use(session(sessionOption));
+app.use(flash());
+
+app.use((req,res,next)=>{
+    res.locals.success = req.flash("success");
+    res.locals.error = req.flash("error");
+    next();
+});
 
 
 app.use("/listings",listings);
