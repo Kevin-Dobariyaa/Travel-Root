@@ -15,7 +15,10 @@
     <!-- <h1>Travel Root</h1> -->
     <%- include("../includes/navbar.ejs") %>
     
-    <div class="container"><%- body  %></div>
+    <%- include("../includes/flash.ejs") %>
+    <div class="container">
+        <%- body  %>
+    </div>
 
     <%- include("../includes/footer.ejs") %>
 
