@@ -245,6 +245,37 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 
+/* pop up */
+
+.msg{
+    position: fixed;
+    top: 6rem;
+    right: 1rem;
+    z-index: 1100;
+    width: 20rem;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-bottom: 4px solid transparent;
+}
+
+#success{
+    transition: border-bottom-color 3s cubic-bezier(0.42, 0, 1.0, 1.0);
+    /* border-bottom:4px solid green; */
+}
+
+#success.myActiveSuccess{
+    border-bottom-color: green;
+}
+
+#danger{
+    transition: border-bottom-color 3s cubic-bezier(0.42, 0, 1.0, 1.0);
+    /* border-bottom:4px solid green; */
+}
+
+#danger.myActiveDanger{
+    border-bottom-color: rgb(229, 82, 82);
+}
+
 
 
 
