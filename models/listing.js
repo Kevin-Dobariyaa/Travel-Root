@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Review = require("./review.js");
+const User = require("./user.js");
 const listingSchema = new mongoose.Schema({
     title: {
         type:String,
@@ -31,6 +32,10 @@ const listingSchema = new mongoose.Schema({
         type:mongoose.Schema.Types.ObjectId,
         ref:"Review",
     }],
+    createdBy: {
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"User",
+    },
 });
 
 listingSchema.post("findOneAndDelete",async (listing)=>{
