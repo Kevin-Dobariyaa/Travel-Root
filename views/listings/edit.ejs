@@ -4,25 +4,30 @@
         <div class="row d-flex justify-content-center mt-4 mb-4">
             <div class="col-md-6 form-container">
                 <h3 class="text-center my-4 fs-3">Edit Listing</h3>
-                <form method="post" action="/listings/<%= listing._id %>?_method=PUT" class="needs-validation" novalidate>
+                <form method="post" action="/listings/<%= listing._id %>?_method=PUT" class="needs-validation" novalidate enctype="multipart/form-data">
                     <div class="mb-3">
                         <label for="title" class="form-label">Title</label>
                         <input class="form-control" type="text" name="listing[title]" value="<%= listing.title  %>"
                             placeholder="Enter title" id="title" required>
                         <div class="valid-feedback">Title looks good!</div>
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-4">
                         <label for="description" class="form-label">Description</label>
                         <textarea class="form-control" ea name="listing[description]" id="description"
                             placeholder="Enter description" id="description" required><%= listing.description %></textarea>
                         <div class="invalid-feedback">Please enter a sort description</div>
 
                     </div>
-
+                    
                     <div class="mb-3">
-                        <label for="image" class="form-label">Image-Link</label>
-                        <input class="form-control" type="text" name="listing[image]" value="<%= listing.image %>"
-                            placeholder="Enter image URL" id="image" required>
+                        <label for="" class="form-label">Original Listing Image</label>
+                        <img src="<%= originalImageUrl  %>" alt="image" class="form-control p-0">
+                    </div>
+                    <div class="mb-4">
+                        <label for="image" class="form-label">Updated Image</label>
+                        <input class="form-control" type="file" name="listing[image]" value="<%= listing.image %>"
+                             id="image">
+                        <div class="invalid-feedback">Image should be require</div>
                     </div>
 
                     <div class="row mb-3">
