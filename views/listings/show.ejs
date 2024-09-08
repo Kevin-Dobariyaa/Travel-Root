@@ -25,7 +25,7 @@
                     <li class="list-group-item">Country: <%= listing.country %>
                     </li>
                 </ul>
-                <% if(currUser && currUser._id.equals(listing.createdBy._id)){ %>
+                <% if(typeof currUser !== 'undefined' && currUser._id.equals(listing.createdBy._id)){ %>
                     <div class="mt-4 text-center">
                         <a href="/listings/<%= listing._id %>/edit" class="btn btn-primary btn-custom">Edit</a>
                         <form method="post" action="/listings/<%= listing.id %>?_method=Delete" class="d-inline">
@@ -40,7 +40,7 @@
 
         </div>
 
-        <% if(currUser){ %>
+        <% if(typeof currUser !== 'undefined'){ %>
 
             <div class="review card custom-card listing-card">
                 <h5 class="text-center heading">Leave a review</h5>
@@ -101,7 +101,7 @@
                                             action="/listings/<%= listing.id  %>/reviews/<%= review._id %>?_method=Delete"
                                             class="m-0">
 
-                                            <% if(currUser.id==review.author._id){ %>
+                                            <% if(typeof currUser !== 'undefined' &&  currUser._id==review.author._id){ %>
                                                 <button class="btn btn-danger review-btn">Delete</button>
                                                 <% }else{ %>
                                                     <button class="btn btn-danger review-btn" disabled>Delete</button>
