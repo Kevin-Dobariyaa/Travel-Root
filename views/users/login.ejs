@@ -1,17 +1,22 @@
 <% layout("/layouts/boilerplate") %>
 
-<div class="row mt-3">
-    <div class="col-6 offset-3">
-        <form method= "post" action="/login" class="needs-validation" novalidate>
-            <div class="mb-3">
-                <label for="username" class="form-label">Username</label>
-                <input type="text" name="username" placeholder="Enter username" class="form-control" id="username" required>
-            </div>
-            <div class="mb-3">
-                <label for="password" class="form-label">Password</label>
-                <input type="password" name="password" placeholder="Enter password" class="form-control" id="password" required>
-            </div>
-            <button>Login</button>
-        </form>
+<div class="row mt-5">
+    <div class="col-md-6 offset-md-3">
+        <div class="p-4 shadow rounded">
+            <h3 class="card-title text-center mb-4 card-title">Login</h3>
+            <form method="post" action="/login" class="needs-validation" novalidate>
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" name="username" placeholder="Enter username" class="form-control" id="username" required>
+                    <div class="invalid-feedback">Username should be require</div>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" name="password" placeholder="Enter password" class="form-control" id="password" required>
+                    <div class="invalid-feedback">Password should be require</div>
+                </div>
+                <button class="btn btn-success w-100">Login</button>
+            </form>
+        </div>
     </div>
 </div>
