@@ -15,7 +15,7 @@ module.exports.postListing = async (req, res, next) => {
 
     let map = await geocodingClient
         .forwardGeocode({
-            query: req.body.listing.location    ,
+            query: req.body.listing.location,
             limit: 1,
         })
         .send();
@@ -25,6 +25,7 @@ module.exports.postListing = async (req, res, next) => {
     const newListing = new Listing(req.body.listing);
 
     newListing.createdBy = req.user._id;
+    url.replace("/upload/h_300,w_250","/upload/h_100,w_100");
     newListing.image = {url,filename};
     newListing.geometry = map.body.features[0].geometry;
 
@@ -40,9 +41,7 @@ module.exports.editForm = async (req, res) => {
         req.flash("error","Listing Not Found");
         res.redirect("/listings");
     }else{
-        let originalImageUrl = listing.image.url;
-        originalImageUrl.replace("/upload/h_300,w_250","/upload/h_100,w_100");
-        res.render("listings/edit.ejs", { listing,originalImageUrl });
+        res.render("listings/edit.ejs", { listing });
     }
 }
 
@@ -74,7 +73,7 @@ module.exports.editPut = async (req, res) => {
 
 module.exports.destroyListing = async (req, res) => {
     let { id } = req.params;
-    let deleted = await Listing.findByIdAndDelete(id);
+    await Listing.findByIdAndDelete(id);
     req.flash("success","Listing Deleted!");
     res.redirect("/listings");
 }
