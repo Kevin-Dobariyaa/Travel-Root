@@ -8,6 +8,7 @@ const methodOverride = require('method-override');
 const path = require("path");
 const ejsMate = require("ejs-mate");
 const session = require("express-session");
+const MongoStore = require('connect-mongo');
 const flash = require("connect-flash");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
@@ -17,9 +18,23 @@ const ExpressError = require("./utils/ExpressError.js")
 
 const app = express();
 
-const MONGO_URL = "mongodb://127.0.0.1:27017/TravelRoot";
+const dbURL = process.env.ATLASDB_URL;
+const store = MongoStore.create({
+
+    mongoUrl: dbURL,
+    crypto:{
+        secret:process.env.SECRET,
+    },
+    touchAfter: 60*60*24,
+});
+
+store.on("error",()=>{
+    console.log("ERROR in MONGO SESSION",err);
+});
+
 const sessionOption = {
-    secret:"changethissecret",
+    store,
+    secret:process.env.SECRET,
     resave:false,
     saveUninitialized:true,
     cookie:{
@@ -28,7 +43,6 @@ const sessionOption = {
         httpOnly: true,
     }
 };
-
 
 
 const listingRouter = require("./routes/listing.js");
@@ -44,7 +58,7 @@ main()
     });
 
 async function main() {
-    await mongoose.connect(MONGO_URL);
+    await mongoose.connect(dbURL);
 }
 
 app.set("view engine", "ejs");
@@ -74,15 +88,9 @@ app.use((req,res,next)=>{
     next();
 });
 
-// app.get("/demouser", async (req,res)=>{
-//     let fakeUser = new User({
-//         email:"kevin@gmail.com",
-//         username:"kewin",
-//     });
-
-//     let registeredUser =  await User.register(fakeUser,"password");
-//     res.send(registeredUser);
-// });
+app.get("/",(req,res)=>{
+    res.redirect("/listings");
+});
 
 app.use("/listings",listingRouter);
 app.use("/listings/:id/reviews",reviewRouter);
