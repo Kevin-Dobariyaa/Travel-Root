@@ -21,7 +21,7 @@
           <li class="nav-item">
             <a class="nav-link" href="/listings/new">Add Your Home</a>
           </li>
-          <% if(!currUser) {%>
+          <% if(typeof currUser === 'undefined') {%>
             <li class="nav-item">
               <a href="/signup" class=" btn btn-outline-success box">SignUp</a>
             </li>
