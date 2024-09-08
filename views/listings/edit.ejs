@@ -21,11 +21,11 @@
                     
                     <div class="mb-3">
                         <label for="" class="form-label">Original Listing Image</label>
-                        <img src="<%= originalImageUrl  %>" alt="image" class="form-control p-0">
+                        <img src="<%= listing.image.url  %>" alt="image" class="form-control p-0">
                     </div>
                     <div class="mb-4">
                         <label for="image" class="form-label">Updated Image</label>
-                        <input class="form-control" type="file" name="listing[image]" value="<%= listing.image %>"
+                        <input class="form-control" type="file"  accept="image/*" name="listing[image]" value="<%= listing.image %>"
                              id="image">
                         <div class="invalid-feedback">Image should be require</div>
                     </div>
