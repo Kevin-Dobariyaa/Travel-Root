@@ -2,7 +2,7 @@
 # Travel-Root
 
 
-[Live Website](https://travel-root.onrender.com)
+<a href="https://travel-root.onrender.com" target="_blank">Live Website</a>
 
 **Travel-Root** is a web application that allows users to view, add, and manage travel destination listings. Built using Node.js, Express, and MongoDB, it provides user authentication, reviews, and the ability to comment on listings and reviews, as well as a map view feature for better visualization of destinations. The application promotes a community-driven approach to sharing travel experiences.
 
