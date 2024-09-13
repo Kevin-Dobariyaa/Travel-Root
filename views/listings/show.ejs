@@ -100,8 +100,7 @@
                                             <form method="post"
                                             action="/listings/<%= listing.id  %>/reviews/<%= review._id %>?_method=Delete"
                                             class="m-0">
-
-                                            <% if(typeof currUser !== 'undefined' &&  currUser._id==review.author._id){ %>
+                                            <% if(typeof currUser !== 'undefined' &&  currUser._id.equals(review.author._id)){ %>
                                                 <button class="btn btn-danger review-btn">Delete</button>
                                                 <% }else{ %>
                                                     <button class="btn btn-danger review-btn" disabled>Delete</button>
